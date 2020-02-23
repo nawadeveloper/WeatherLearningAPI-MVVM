@@ -45,7 +45,7 @@ class SearchActivityRepository(val application: Application) {
                 response: Response<SearchList>
             ) {
 
-                Log.d("SearchActivity", "Response: ${Gson().toJson(response.body())}")
+//                Log.d("SearchActivity", "Response: ${Gson().toJson(response.body())}")
                 locationList.value = response.body()
                 showProgress.value = false
             }

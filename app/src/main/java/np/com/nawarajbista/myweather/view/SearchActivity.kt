@@ -1,7 +1,9 @@
 package np.com.nawarajbista.myweather.view
 
+import LocationAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
@@ -13,6 +15,7 @@ import np.com.nawarajbista.myweather.viewModel.SearchActivityViewModel
 class SearchActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SearchActivityViewModel
+    private lateinit var adapter: LocationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,17 @@ class SearchActivity : AppCompatActivity() {
                 progressbar_search.visibility = GONE
             }
         })
+
+
+        viewModel.locationList.observe(this, Observer {
+            adapter.setLocationList(it.list)
+        })
+
+
+        adapter = LocationAdapter(this)
+        rv_search_location.adapter = adapter
+
+//        Log.d("SearchActivity", adapter.itemCount.toString())
 
 
     }
