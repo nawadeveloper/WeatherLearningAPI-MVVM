@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import np.com.nawarajbista.myweather.network.BASE_URL
 import np.com.nawarajbista.myweather.network.WeatherNetwork
 import np.com.nawarajbista.myweather.network.model.SearchList

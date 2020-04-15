@@ -1,5 +1,8 @@
 package np.com.nawarajbista.myweather.network.model
 
-class SearchList(
-    val list: List<X>
+data class SearchList(
+    val cod: String,
+    val count: Int,
+    val list: List<X>,
+    val message: String
 )

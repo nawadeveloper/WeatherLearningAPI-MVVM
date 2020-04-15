@@ -12,6 +12,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -46,7 +49,10 @@ class MainActivity : AppCompatActivity() {
 
 
         viewModel.currentWeather.observe(this, Observer {
-            tv_location.text = it.main.temp.toString()
+            val degree = '\u00B0'
+            tv_location.text = it.name.toString()
+            tv_description.text = it.weather[0].description
+            tv_temperature.text = it.main.temp.toString().plus(degree)
         })
 
 
@@ -99,8 +105,6 @@ class MainActivity : AppCompatActivity() {
                         val lat = location.latitude.toString()
                         val lon = location.longitude.toString()
                         viewModel.getCurrentWeatherData(lat,lon, "e220049a903fb389394cea0dda1cb89e")
-//                        findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
-//                        findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
                     }
                 }
             } else {
@@ -136,9 +140,28 @@ class MainActivity : AppCompatActivity() {
             val lat = mLastLocation.latitude.toString()
             val lon = mLastLocation.longitude.toString()
             viewModel.getCurrentWeatherData(lat,lon, "e220049a903fb389394cea0dda1cb89e")
+        }
+    }
 
-//            findViewById<TextView>(R.id.latTextView).text = mLastLocation.latitude.toString()
-//            findViewById<TextView>(R.id.lonTextView).text = mLastLocation.longitude.toString()
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.popup_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.search -> {
+                val intent = Intent(this,SearchActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.help -> {
+                //showHelp()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import np.com.nawarajbista.myweather.network.BASE_URL
 import np.com.nawarajbista.myweather.network.WeatherNetwork
-import np.com.nawarajbista.myweather.network.model.SearchList
 import np.com.nawarajbista.myweather.network.model.X
 import retrofit2.Call
 import retrofit2.Callback
